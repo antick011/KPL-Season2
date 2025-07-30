@@ -1,0 +1,338 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9fafb;
+  color: #111827;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  background-image: url('../assets/bg/logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.7;
+  z-index: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  filter: contrast(150%) brightness(110%);
+}
+
+header {
+  background: #1e3a8a;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  position: relative;
+}
+
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+main.auction-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 30px 20px;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+section.player-section,
+section.bidding-section {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  flex: 1 1 400px;
+  max-width: 600px;
+  z-index: 1;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.player-section input[type=text] {
+  width: calc(100% - 120px);
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.player-section button {
+  padding: 12px 18px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.player-section button:hover {
+  background: #1d4ed8;
+}
+
+.player-card {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.player-card img {
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+}
+
+.player-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.player-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.sold-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  background: #16a34a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.sold-btn:hover {
+  background: #15803d;
+}
+
+.bidding-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.team-grid button {
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+}
+
+.team-grid button:nth-child(1) { background: #6b21a8; }
+.team-grid button:nth-child(2) { background: #1e40af; }
+.team-grid button:nth-child(3) { background: #fbbf24; color: #111; }
+.team-grid button:nth-child(4) { background: #dc2626; }
+.team-grid button:nth-child(5) { background: #000000; }
+.team-grid button:nth-child(6) { background: #ea580c; }
+.team-grid button:nth-child(7) { background: #3b82f6; }
+.team-grid button:nth-child(8) { background: #b91c1c; }
+
+.bid-info {
+  background: #f3f4f6;
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.bid-info p {
+  font-size: 0.95rem;
+  margin: 6px 0;
+}
+
+#bidHistory {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+}
+
+#bidHistory li {
+  display: flex;
+  justify-content: space-between;
+  background: #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+button.reset-btn {
+  margin: 30px auto;
+  display: block;
+  padding: 12px 24px;
+  background: #374151;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+  color: #16a34a;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Bootstrap-Inspired Dark Navbar --- */
+.navbar {
+  background-color: #111827; /* Darker shade */
+  padding: 12px 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-wrapper {
+  width: 50px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 0.1px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* hides any overflow if image moves up */
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  transform: translateY(-4px); /* move image up inside the wrapper */
+}
+
+.site-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: #f9fafb;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #38bdf8;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #38bdf8;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-top: 12px;
+  }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KPL Auction Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark custom-navbar shadow-sm sticky-top bg-dark">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+      <div class="logo-wrapper">
+        <img src="assets/bg/logo.png" alt="Logo" class="logo-img">
+      </div>
+      <span class="fw-bold fs-4">KPL Auction</span>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#kplNavbar" aria-controls="kplNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="kplNavbar">
+      <ul class="navbar-nav gap-3">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Auction Hub</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="players.html">Players Pool</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="teams.html">Teams</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  <main class="auction-container">
+    <section class="player-section">
+      <input type="text" id="searchInput" placeholder="Search Player ID e.g. A21">
+      <button onclick="searchPlayer()">Search</button>
+      <div class="player-card">
+        <img id="playerImg" src="assets/players/default.png" alt="Player Image">
+        <h2 id="playerName">Player Name</h2>
+        <p><strong>ID:</strong> <span id="playerID">-</span></p>
+        <p><strong>Role:</strong> <span id="playerRole">-</span></p>
+        <p><strong>From:</strong> <span id="playerFrom">-</span></p>
+        <p><strong>Phone:</strong> <span id="playerPhone">-</span></p>
+        <p><strong>Base Price:</strong> ₹<span id="playerBase">-</span></p>
+      </div>
+      <button class="sold-btn" onclick="markPlayerAsSold()">✅ Mark as Sold</button>
+    </section>
+
+    <section class="bidding-section">
+      <h2>Place Bid</h2>
+      <div class="team-grid">
+        <button onclick="placeBid('KKR')">KKR</button>
+        <button onclick="placeBid('MI')">MI</button>
+        <button onclick="placeBid('CSK')">CSK</button>
+        <button onclick="placeBid('RCB')">RCB</button>
+        <button onclick="placeBid('GT')">GT</button>
+        <button onclick="placeBid('SRH')">SRH</button>
+        <button onclick="placeBid('DC')">DC</button>
+        <button onclick="placeBid('PBKS')">PBKS</button>
+      </div>
+      <div class="bid-info">
+        <p><strong>Last Bid Team:</strong> <span id="lastBidTeam">-</span></p>
+        <p><strong>Last Bid Amount:</strong> ₹<span id="lastBidAmount">-</span></p>
+        <h4>Bid History</h4>
+        <ul id="bidHistory"></ul>
+      </div>
+    </section>
+  </main>
+
+  <button class="reset-btn" onclick="resetAuction()">Reset All</button>
+
+  <div id="soldModal" class="modal">
+    <div class="modal-content">
+      <h2 id="soldMessage"></h2>
+    </div>
+  </div>
+
+  <script>
+  function resetAuction() {
+    localStorage.removeItem('playersData');
+    localStorage.removeItem('soldPlayers');
+    localStorage.removeItem('teamsData');
+    alert("Auction data reset. Reloading...");
+    location.reload();
+  }
+</script>
+
+</body>
+</html>
